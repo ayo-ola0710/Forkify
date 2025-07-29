@@ -3,7 +3,6 @@ import Navbar from "./Navbar";
 import SideBar from "./SideBar";
 import Dish from "./Dish";
 import ErrorMessage from "./ui/ErrorMessage";
-import Loading from "./ui/Loading";
 
 const ItemsContainer = () => {
   const [inputValue, setInputValue] = useState("");
@@ -28,8 +27,15 @@ const ItemsContainer = () => {
 
   useEffect(() => {
     async function getRecipt() {
+      if (!inputValue) {
+        setIsLoading(false);
+        setError("");
+        return;
+      }
       try {
         setIsLoading(true);
+        setData([]);
+        setError("");
         const recipes = await fetch(
           `https://www.themealdb.com/api/json/v1/1/search.php?f=${inputValue}`
         );
@@ -42,6 +48,7 @@ const ItemsContainer = () => {
       } catch (error) {
         console.log(error);
         setError(error.message);
+        setIsLoading(false);
       }
     }
     getRecipt();
@@ -53,6 +60,7 @@ const ItemsContainer = () => {
         inputValue={inputValue}
         setInputValue={setInputValue}
         bookmarked={bookmarked}
+        data={data}
       />
       <div className="grid grid-cols-2 ">
         {error ? (
