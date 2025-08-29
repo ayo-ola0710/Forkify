@@ -2,10 +2,11 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import ErrorMessage from "./ui/ErrorMessage";
 import Products from "./ui/Products";
 import Loading from "./ui/Loading";
-
 import { useState } from "react";
+import { useMeal } from "../utils/useMeal";
 
-const SideBar = ({ data, onSelect, isLoading, error }) => {
+const SideBar = () => {
+  const { data, onSelect, isLoading, error } = useMeal();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 

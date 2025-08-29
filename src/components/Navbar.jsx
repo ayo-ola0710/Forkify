@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { FaSearch, FaEdit, FaBookmark } from "react-icons/fa";
 import Bookmark from "./Bookmark";
+import { useMeal } from "../utils/useMeal";
 
-const Navbar = ({ inputValue, setInputValue, bookmarked, data }) => {
+const Navbar = () => {
+  const { inputValue, setInputValue, bookmarked, data } = useMeal();
   const [showDropdown, setShowDropdown] = useState(false);
 
   function dropMenu() {

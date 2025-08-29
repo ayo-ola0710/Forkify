@@ -1,29 +1,13 @@
-import { useState, useEffect } from "react";
+import { useMeal } from "../utils/useMeal";
+import { useEffect } from "react";
 import Navbar from "./Navbar";
 import SideBar from "./SideBar";
 import Dish from "./Dish";
 import ErrorMessage from "./ui/ErrorMessage";
 
 const ItemsContainer = () => {
-  const [inputValue, setInputValue] = useState("");
-  const [data, setData] = useState([]);
-  const [selectedId, setSelectedId] = useState(null);
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [bookmarked, setBookmarked] = useState([]);
-
-  function handleSelect(id) {
-    setSelectedId((selectedId) => (id === selectedId ? null : id));
-  }
-
-  function handleBookmark(data) {
-    setBookmarked((bookmarked) => {
-      if (bookmarked.find((item) => item.id === data.id)) {
-        return bookmarked;
-      }
-      return [...bookmarked, data];
-    });
-  }
+  const { inputValue, setData, setError, setIsLoading, error, selectedId } =
+    useMeal();
 
   useEffect(() => {
     async function getRecipt() {
@@ -56,12 +40,7 @@ const ItemsContainer = () => {
 
   return (
     <div className="pt-20  ">
-      <Navbar
-        inputValue={inputValue}
-        setInputValue={setInputValue}
-        bookmarked={bookmarked}
-        data={data}
-      />
+      <Navbar />
       <div className="grid grid-cols-2 ">
         {error ? (
           <div className="bg-white w-85 ml-40 pt-30 pb-10 rounded-bl-4xl ">
@@ -71,16 +50,11 @@ const ItemsContainer = () => {
             />
           </div>
         ) : (
-          <SideBar
-            data={data}
-            onSelect={handleSelect}
-            isLoading={isLoading}
-            error={error}
-          />
+          <SideBar />
         )}
 
         {selectedId ? (
-          <Dish selectedId={selectedId} handleBookmark={handleBookmark} />
+          <Dish />
         ) : (
           <div className="bg-slate-100 text-center -ml-44 mr-40 pt-20 rounded-br-4xl">
             <ErrorMessage

@@ -1,4 +1,7 @@
-const Products = ({ meal, onSelect }) => {
+import { useMeal } from "../../utils/useMeal";
+
+const Products = ({ meal }) => {
+  const { onSelect } = useMeal();
   return (
     <div
       className="flex items-center gap-4 pl-8 py-4 mb-4  hover:bg-orange-100"

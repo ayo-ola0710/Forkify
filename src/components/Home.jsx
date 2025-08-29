@@ -1,11 +1,12 @@
-import React from "react";
 import ItemsContainer from "./ItemsContainer";
-// import { useState } from "react";
+import { MealProvider } from "../context/MealContext";
 
 const Home = () => {
   return (
     <div className="bg-orange-200 pb-110">
-      <ItemsContainer />
+      <MealProvider>
+        <ItemsContainer />
+      </MealProvider>
     </div>
   );
 };

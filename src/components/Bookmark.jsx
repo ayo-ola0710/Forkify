@@ -1,6 +1,8 @@
+import { useMeal } from "../utils/useMeal";
 import Products from "./ui/Products";
 
-const Bookmark = ({ bookmarked, data }) => {
+const Bookmark = () => {
+  const { bookmarked, data } = useMeal();
   return (
     <div className="absolute -left-18 top-5 mt-2 w-67 bg-white border border-gray-300 rounded shadow-lg z-50">
       {bookmarked.length === 0 ? (

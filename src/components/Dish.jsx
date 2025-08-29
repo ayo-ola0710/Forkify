@@ -1,7 +1,9 @@
 import { FaBookmark } from "react-icons/fa";
 import { useEffect, useState } from "react";
+import { useMeal } from "../utils/useMeal";
 
-const Dish = ({ selectedId, handleBookmark }) => {
+const Dish = () => {
+  const { selectedId, handleBookmark } = useMeal();
   const [details, setDetails] = useState({});
   const [showFullText, setShowFullText] = useState(false);
 
