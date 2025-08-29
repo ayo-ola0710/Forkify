@@ -55,7 +55,7 @@ const Dish = () => {
         <img
           src={img}
           alt="product"
-          width={695}
+          width={668}
           height={10}
           className="h-80 object-cover"
         />
